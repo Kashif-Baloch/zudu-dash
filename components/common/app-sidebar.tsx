@@ -109,7 +109,7 @@ export function AppSidebar() {
                 <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8 shrink-0">
                         <AvatarImage src="https://randomuser.me/portraits/men/20.jpg" alt="User" />
-                        <AvatarFallback>PK</AvatarFallback>
+                        <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col transition-opacity duration-200 group-data-[collapsible=icon]:opacity-0">
                         <span className="text-sm font-medium truncate">Prem Kumar</span>

@@ -9,10 +9,14 @@ import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { ActionMenu } from "./action-menu"
 
 export default function PhoneNumbersPage() {
     const [activeNumber, setActiveNumber] = useState("+91 22 3104 3984")
     const [showAddNumberDialog, setShowAddNumberDialog] = useState(false)
+    const [imNum, setImNum] = useState(false)
+    const [sipDialog, setSipDialog] = useState(false)
+    const [buyDialog, setBuyDialog] = useState(false)
 
     return (
         <div className="flex h-screen bg-white">
@@ -109,18 +113,7 @@ export default function PhoneNumbersPage() {
                     <div className="flex-1 p-6">
                         <div className="flex items-center justify-between mb-6">
                             <h1 className="text-xl font-semibold">{activeNumber}</h1>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" size="icon" className="h-8 w-8 border">
-                                        <MoreHorizontal className="h-4 w-4" />
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuItem>Edit number</DropdownMenuItem>
-                                    <DropdownMenuItem>View call history</DropdownMenuItem>
-                                    <DropdownMenuItem className="text-destructive">Delete number</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+                            <ActionMenu />
                         </div>
 
                         <div className="max-w-3xl space-y-6">
