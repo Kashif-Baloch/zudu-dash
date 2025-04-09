@@ -108,12 +108,12 @@ export function AppSidebar() {
             <SidebarFooter className="p-3">
                 <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8 shrink-0">
-                        <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User" />
-                        <AvatarFallback>JD</AvatarFallback>
+                        <AvatarImage src="https://randomuser.me/portraits/men/20.jpg" alt="User" />
+                        <AvatarFallback>PK</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col transition-opacity duration-200 group-data-[collapsible=icon]:opacity-0">
-                        <span className="text-sm font-medium truncate">John Doe</span>
-                        <span className="text-xs text-muted-foreground truncate">john@example.com</span>
+                        <span className="text-sm font-medium truncate">Prem Kumar</span>
+                        <span className="text-xs text-muted-foreground truncate">My Workspace</span>
                     </div>
                 </div>
             </SidebarFooter>
