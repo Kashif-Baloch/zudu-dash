@@ -2,14 +2,48 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { Plus, MoreHorizontal, FileText } from "lucide-react"
+import { useRef, useState } from "react"
+import { Plus, MoreHorizontal, FileText, FilePlus2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
 export default function KnowledgeBasePage() {
     const [activeKB, setActiveKB] = useState("KB 2")
+    const [showAddFileDialog, setShowAddFileDialog] = useState(false)
+    const [fileName, setfileName] = useState("")
+    const [uploadedFile, setUploadedFile] = useState<File | null>(null)
+    const fileInputRef = useRef<HTMLInputElement>(null)
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setUploadedFile(e.target.files[0])
+        }
+    }
+
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            setUploadedFile(e.dataTransfer.files[0])
+        }
+    }
+
+    const handleAddFile = () => {
+        // Handle adding the voice here
+        console.log("Adding voice:", fileName, uploadedFile)
+        setShowAddFileDialog(false)
+        setfileName("")
+        setUploadedFile(null)
+    }
+
 
     return (
         <div className="flex h-screen bg-white">
@@ -19,13 +53,70 @@ export default function KnowledgeBasePage() {
             <div className="flex-1">
                 <div className="flex h-[calc(100vh-73px)]">
                     {/* KB list section */}
-                    <div className="w-[340px] border-r">
+                    <div className="w-[300px] border-r bg-muted/30">
                         <div className="p-6">
                             <div className="flex items-center justify-between mb-6">
                                 <h1 className="text-xl font-semibold">All KB</h1>
-                                <Button variant="ghost" size="icon" className="h-8 w-8">
+                                {/* <Button variant="ghost" size="icon" className="h-8 w-8">
                                     <Plus className="h-4 w-4" />
-                                </Button>
+                                </Button> */}
+                                <Dialog open={showAddFileDialog} onOpenChange={setShowAddFileDialog}>
+                                    <DialogTrigger asChild>
+                                        <Plus className="h-4 w-4" />
+                                    </DialogTrigger>
+                                    <DialogContent className="sm:max-w-[425px]">
+                                        <DialogHeader>
+                                            <DialogTitle className="flex items-center gap-2">
+                                                <span className="p-2 border rounded-md">
+                                                    <FileText className="h-4 w-4" />
+                                                </span>
+                                                Add Files
+                                            </DialogTitle>
+                                        </DialogHeader>
+                                        <div className="space-y-4 ">
+                                            <div className="space-y-2">
+                                                <div
+                                                    className="border-2 border-dashed rounded-md p-6 text-center cursor-pointer bg-muted/50 transition-colors"
+                                                    onDragOver={handleDragOver}
+                                                    onDrop={handleDrop}
+                                                    onClick={() => fileInputRef.current?.click()}
+                                                >
+                                                    <input
+                                                        type="file"
+                                                        ref={fileInputRef}
+                                                        className="hidden"
+                                                        accept="audio/*"
+                                                        onChange={handleFileChange}
+                                                    />
+                                                    <div className="flex flex-col items-center gap-2">
+                                                        <span className="rounded-md p-2 border bg-white">
+                                                            <FilePlus2 className="h-8 w-8 text-muted-foreground" />
+                                                        </span>
+                                                        {uploadedFile ? (
+                                                            <p className="text-sm">{uploadedFile.name}</p>
+                                                        ) : (
+                                                            <>
+                                                                <p className="text-sm font-medium">Drag and drop or click to upload</p>
+                                                                <p className="text-xs text-muted-foreground">Supports formats MP3,MPEG</p>
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex items-end justify-end gap-3">
+
+                                                <Button
+                                                    className="w-fit bg-black"
+                                                    onClick={handleAddFile}
+                                                // disabled={!fileName || !uploadedFile}
+                                                >
+                                                    Save
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
 
                             <div className="relative mb-4">
@@ -58,10 +149,10 @@ export default function KnowledgeBasePage() {
                         <div className="flex items-center justify-between mb-6">
                             <h1 className="text-xl font-semibold">{activeKB}</h1>
                             <div className="flex items-center gap-2">
-                                <Button className="bg-black text-white hover:bg-black/90">Edit</Button>
+                                <Button size={"sm"} className="bg-black text-white hover:bg-black/90">Edit</Button>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
-                                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                                        <Button variant="ghost" size="icon" className="h-8 w-8 border">
                                             <MoreHorizontal className="h-4 w-4" />
                                         </Button>
                                     </DropdownMenuTrigger>

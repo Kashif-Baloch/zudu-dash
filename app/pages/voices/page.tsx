@@ -1,18 +1,18 @@
 import { AppSidebar } from "@/components/common/app-sidebar"
-import BatchCallPage from "@/components/common/batch-call"
 import Header from "@/components/common/header"
+import VoicesPage from "@/components/common/voices-section"
 import { SidebarInset } from "@/components/ui/sidebar"
 
-export default function CallHistory() {
+export default function Home() {
     return (
         // <SidebarProvider>
         <div className="flex h-screen w-full overflow-hidden">
             <AppSidebar />
             <SidebarInset className="flex-1 overflow-auto">
-                <Header title="Batch Calls" />
-                <BatchCallPage />
+                <Header title="Voices" />
+                <VoicesPage />
             </SidebarInset>
         </div>
-        //  </SidebarProvider>
+        // </SidebarProvider>
     )
 }

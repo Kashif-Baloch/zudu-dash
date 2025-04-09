@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Plus, Settings, Volume2, Copy, MoreHorizontal } from 'lucide-react'
+import { Plus, MoreHorizontal, AudioLines, Headset, Send, FileScan, Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
@@ -36,7 +36,7 @@ export default function AgentsPage() {
             {/* Main content */}
             <div className="flex-1 flex">
                 {/* Agents list section */}
-                <div className="w-[340px] border-r">
+                <div className="w-[300px] border-r bg-muted/30">
                     <div className="p-6">
                         <div className="flex items-center justify-between mb-6">
                             <h1 className="text-xl font-semibold">AI Agents</h1>
@@ -135,7 +135,7 @@ export default function AgentsPage() {
                             </Button>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                                    <Button variant="ghost" size="icon" className="h-8 w-8 border">
                                         <MoreHorizontal className="h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
@@ -151,14 +151,16 @@ export default function AgentsPage() {
 
                     <div className="max-w-3xl space-y-6">
                         {/* Basic section */}
-                        <div className="border rounded-lg p-6 space-y-6">
-                            <div className="flex items-center gap-2 text-sm font-medium">
-                                <Volume2 className="h-4 w-4" />
-                                <span>Basic</span>
+                        <div className="border rounded-lg space-y-6">
+                            <div className="bg-muted/30 p-3 border-b">
+                                <div className="flex items-center gap-2 text-sm font-medium">
+                                    <AudioLines className="h-4 w-4" />
+                                    <span>Basic</span>
+                                </div>
+                                <p className="text-sm ml-6 text-muted-foreground">Enter the language and voice to get started</p>
                             </div>
-                            <p className="text-sm text-muted-foreground">Enter the language and voice to get started</p>
 
-                            <div className="grid grid-cols-2 gap-6">
+                            <div className="grid grid-cols-2 px-6 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium">Agent Language</label>
                                     <Select defaultValue="english">
@@ -260,7 +262,7 @@ export default function AgentsPage() {
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 p-6">
                                 <label className="text-sm font-medium">Speed</label>
                                 <Slider defaultValue={[50]} max={100} step={1} className="py-4" />
                                 <p className="text-xs text-muted-foreground">
@@ -271,14 +273,16 @@ export default function AgentsPage() {
                         </div>
 
                         {/* Dispatch Settings */}
-                        <div className="border rounded-lg p-6 space-y-6">
-                            <div className="flex items-center gap-2 text-sm font-medium">
-                                <Settings className="h-4 w-4" />
-                                <span>Dispatch Settings</span>
+                        <div className="border rounded-lg space-y-6">
+                            <div className="bg-muted/30 p-3 border-b">
+                                <div className="flex items-center gap-2 text-sm font-medium">
+                                    <Headset className="h-4 w-4" />
+                                    <span>Dispatch Settings</span>
+                                </div>
+                                <p className="text-sm ml-6 text-muted-foreground">Add transfer numbers and set Duration</p>
                             </div>
-                            <p className="text-sm text-muted-foreground">Add transfer numbers and set Duration</p>
 
-                            <div className="grid grid-cols-2 gap-6">
+                            <div className="grid grid-cols-2 gap-6 px-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium">Transfer Number</label>
                                     <Select defaultValue="us">
@@ -347,7 +351,7 @@ export default function AgentsPage() {
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 p-6">
                                 <label className="text-sm font-medium">Max Duration</label>
                                 <Slider defaultValue={[50]} max={100} step={1} className="py-4" />
                                 <p className="text-xs text-muted-foreground">
@@ -358,32 +362,21 @@ export default function AgentsPage() {
                         </div>
 
                         {/* Model Settings */}
-                        <div className="border rounded-lg p-6 space-y-6">
-                            <div className="flex items-center gap-2 text-sm font-medium">
-                                <svg
-                                    className="h-4 w-4"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                    <path d="M2 17l10 5 10-5" />
-                                    <path d="M2 12l10 5 10-5" />
-                                </svg>
-                                <span>Model Settings</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground">Tune the model and prompt settings</p>
+                        <div className="border rounded-lg space-y-6">
 
-                            <div className="space-y-2">
+                            <div className="bg-muted/30 p-3 border-b">
+                                <div className="flex items-center gap-2 text-sm font-medium">
+                                    <Send className="h-4 w-4" />
+                                    <span>Model Settings</span>
+                                </div>
+                                <p className="text-sm ml-6 text-muted-foreground">Tune the model and prompt settings</p>
+                            </div>
+                            <div className="space-y-2 px-6">
                                 <label className="text-sm font-medium">First Message</label>
                                 <Textarea placeholder="e.g. Hello, how can I help you today?" className="min-h-[100px]" />
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 p-6">
                                 <label className="text-sm font-medium">System prompt</label>
                                 <Textarea
                                     placeholder="You are a helpful assistant."
@@ -394,25 +387,18 @@ export default function AgentsPage() {
                         </div>
 
                         {/* Knowledge */}
-                        <div className="border rounded-lg p-6 space-y-6">
-                            <div className="flex items-center gap-2 text-sm font-medium">
-                                <svg
-                                    className="h-4 w-4"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-                                </svg>
-                                <span>Knowledge</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground">Add Knowledge base and tools</p>
+                        <div className="border rounded-lg space-y-6">
 
-                            <div className="space-y-2">
+                            <div className="bg-muted/30 p-3 border-b">
+                                <div className="flex items-center gap-2 text-sm font-medium">
+                                    <FileScan className="h-4 w-4" />
+                                    <span>Knowledge</span>
+                                </div>
+                                <p className="text-sm ml-6 text-muted-foreground">Add Knowledge base and tools</p>
+
+
+                            </div>
+                            <div className="space-y-2 px-6">
                                 <label className="text-sm font-medium">Knowledge base</label>
                                 <Select>
                                     <SelectTrigger className="w-full">
@@ -427,7 +413,7 @@ export default function AgentsPage() {
                                 </Select>
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 px-6 pb-6">
                                 <label className="text-sm font-medium">Tools</label>
                                 <div className="border rounded-md p-4 flex items-start justify-between">
                                     <div className="flex items-start gap-3">
@@ -454,13 +440,13 @@ export default function AgentsPage() {
                                         </div>
                                     </div>
                                     <Button variant="ghost" size="icon" className="h-8 w-8">
-                                        <Copy className="h-4 w-4" />
+                                        <Trash2 className="h-4 w-4" />
                                     </Button>
                                 </div>
 
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button variant="outline" className="gap-2 bg-black text-white hover:bg-transparent mt-2">
+                                        <Button className="gap-2 bg-black text-white mt-2">
                                             <Plus className="h-4 w-4" />
                                             <span>Add tool</span>
                                         </Button>

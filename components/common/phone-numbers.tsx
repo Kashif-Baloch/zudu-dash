@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Plus, MoreHorizontal, Phone, ChevronDown } from "lucide-react"
+import { Plus, MoreHorizontal, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -22,7 +22,7 @@ export default function PhoneNumbersPage() {
 
                 <div className="flex h-[calc(100vh-73px)]">
                     {/* Phone numbers list section */}
-                    <div className="w-[340px] border-r">
+                    <div className="w-[300px] border-r bg-muted/30">
                         <div className="p-6">
                             <div className="flex items-center justify-between mb-6">
                                 <h1 className="text-xl font-semibold">All Numbers</h1>
@@ -111,7 +111,7 @@ export default function PhoneNumbersPage() {
                             <h1 className="text-xl font-semibold">{activeNumber}</h1>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                                    <Button variant="ghost" size="icon" className="h-8 w-8 border">
                                         <MoreHorizontal className="h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
@@ -139,7 +139,7 @@ export default function PhoneNumbersPage() {
                                             <SelectValue>
                                                 <div className="flex items-center justify-between w-full">
                                                     <span>Zudu</span>
-                                                    <ChevronDown className="h-4 w-4 opacity-50" />
+                                                    {/* <ChevronDown className="h-4 w-4 opacity-50" /> */}
                                                 </div>
                                             </SelectValue>
                                         </SelectTrigger>
@@ -168,7 +168,7 @@ export default function PhoneNumbersPage() {
                                             <SelectValue>
                                                 <div className="flex items-center justify-between w-full">
                                                     <span>Zudu</span>
-                                                    <ChevronDown className="h-4 w-4 opacity-50" />
+                                                    {/* <ChevronDown className="h-4 w-4 opacity-50" /> */}
                                                 </div>
                                             </SelectValue>
                                         </SelectTrigger>
